@@ -30,11 +30,6 @@ ln -fs /vagrant /var/www
 # install MongoDB
 apt-get install -y mongodb
 service mongodb restart
-cat > /vagrant/mongousers.js << EOF
-	db.addUser('mongoadminusername','mongoadminpassword');
-	db.addUser('mongousername','mongopassword');
-EOF
-mongo metabolomexchange /vagrant/mongousers.js
 
 # install GIT
 apt-get install -y git-core
@@ -87,3 +82,18 @@ chmod -R 777 /var/www/html/cache
 
 # restart Apache
 service apache2 restart
+
+# init call to MX
+wget http://localhost
+rm -rf index.html
+
+# add correct users to mongo
+cat > /vagrant/mongousers.js << EOF
+    db.addUser('mongoadminusername','mongoadminpassword');
+    db.addUser('mongousername','mongopassword');
+EOF
+mongo metabolomexchange /vagrant/mongousers.js
+
+# re-init call to MX
+wget http://localhost
+rm -rf index.html
