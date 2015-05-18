@@ -56,7 +56,12 @@ EOF
 
 # download latest version of mx
 git clone https://github.com/leidenuniv-lacdr-abs/metabolomexchange.git /var/www/source-mx
+cd /var/www/source-mx/
+git checkout 602b03bd13c1f8f0b4bf735bb544fb406a308f23
+
 git clone https://github.com/leidenuniv-lacdr-abs/metabolomexchange-feeds.git /var/www/source-mx-feeds
+cd /var/www/source-mx-feeds
+git checkout 83078c34c38548a70cedcc2d239cde49b94ec1ab
 
 ln -s /var/www/source-mx /var/www/html
 ln -s /var/www/source-mx-feeds /var/www/html/feeds
